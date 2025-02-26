@@ -15,7 +15,6 @@ export default function App() {
   const [carry, setCarry] = useState(["", "", "", ""]);
   const [result, setResult] = useState(["", "", "", ""]);
   const [message, setMessage] = useState("");
-  const [overlay, setOverlay] = useState(null);
 
   const num1Digits = splitNumber(numbers[0]);
   const num2Digits = splitNumber(numbers[1]);
@@ -49,23 +48,11 @@ export default function App() {
     setMessage("");
   }
 
-  function openOverlay(index, type) {
-    setOverlay({ index, type });
-  }
-
-  function selectNumber(num) {
-    if (overlay) {
-      let newValues = overlay.type === "carry" ? [...carry] : [...result];
-      newValues[overlay.index] = num.toString();
-      overlay.type === "carry" ? setCarry(newValues) : setResult(newValues);
-      setOverlay(null);
-    }
-  }
-
   return (
     <div style={{ fontFamily: "Arial", textAlign: "center", maxWidth: 400, margin: "20px auto", padding: 20, background: "#fff", borderRadius: 10, boxShadow: "0 4px 8px rgba(0,0,0,0.1)", color: "black" }}>
       <h3 style={{ color: "black" }}>Schriftliche Addition</h3>
       <div>
+        {/* Hier werden die Ziffern der Summanden angezeigt */}
         {[num1Digits, num2Digits, carry].map((row, rowIndex) => (
           <div key={rowIndex} style={{ display: "flex", justifyContent: "flex-end", gap: 10, marginBottom: 5 }}>
             {row.map((value, i) => (
@@ -78,7 +65,11 @@ export default function App() {
                   type="text"
                   maxLength="1"
                   value={value}
-                  onFocus={() => openOverlay(i, "carry")}
+                  onChange={(e) => {
+                    let newValue = [...carry];
+                    newValue[i] = e.target.value.replace(/\D/, "");
+                    setCarry(newValue);
+                  }}
                 />
               )
             ))}
@@ -93,7 +84,11 @@ export default function App() {
               type="text"
               maxLength="1"
               value={value}
-              onFocus={() => openOverlay(i, "result")}
+              onChange={(e) => {
+                let newValue = [...result];
+                newValue[i] = e.target.value.replace(/\D/, "");
+                setResult(newValue);
+              }}
             />
           ))}
         </div>
@@ -101,17 +96,6 @@ export default function App() {
       <button onClick={checkAnswer} style={{ backgroundColor: "#28a745", color: "white", border: "none", padding: 10, fontSize: 16, borderRadius: 5, cursor: "pointer", width: "100%", margin: "10px 0" }}>Überprüfen</button>
       <button onClick={newTask} style={{ backgroundColor: "#007bff", color: "white", border: "none", padding: 10, fontSize: 16, borderRadius: 5, cursor: "pointer", width: "100%" }}>Neue Aufgabe</button>
       <p style={{ fontSize: 18, marginTop: 10 }}>{message}</p>
-      {overlay && (
-        <div style={{ position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)", background: "white", padding: 20, boxShadow: "0 4px 8px rgba(0,0,0,0.2)", borderRadius: 10 }}>
-          <h4>Zahl auswählen</h4>
-          <div style={{ display: "flex", gap: 10 }}>
-            {[...Array(10).keys()].map(num => (
-              <button key={num} style={{ fontSize: 20, padding: 10 }} onClick={() => selectNumber(num)}>{num}</button>
-            ))}
-          </div>
-          <button onClick={() => setOverlay(null)} style={{ marginTop: 10 }}>Schließen</button>
-        </div>
-      )}
     </div>
   );
 }
