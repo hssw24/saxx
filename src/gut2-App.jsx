@@ -78,8 +78,6 @@ export default function App() {
                   type="text"
                   maxLength="1"
                   value={value}
-                  inputMode="none"
-                  readOnly
                   onFocus={() => openOverlay(i, "carry")}
                 />
               )
@@ -95,8 +93,6 @@ export default function App() {
               type="text"
               maxLength="1"
               value={value}
-              inputMode="none"
-              readOnly
               onFocus={() => openOverlay(i, "result")}
             />
           ))}
