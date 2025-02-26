@@ -7,7 +7,7 @@ function generateNumbers() {
 }
 
 function splitNumber(num, length = 4) {
-  return String(num).padStart(length, " ").split(" ").map(char => (char === " " ? "" : Number(char)));
+  return String(num).padStart(length, " ").split("").map(char => (char === " " ? "" : Number(char)));
 }
 
 export default function App() {
@@ -50,17 +50,17 @@ export default function App() {
 
   return (
     <div style={{ fontFamily: "Arial", textAlign: "center", maxWidth: 400, margin: "20px auto", padding: 20, background: "#fff", borderRadius: 10, boxShadow: "0 4px 8px rgba(0,0,0,0.1)" }}>
-      <h1 style={{ fontSize: "20px", marginBottom: "10px" }}>Schriftliche Addition</h1>
+      <h1>Schriftliche Addition</h1>
       <div>
         {[num1Digits, num2Digits, carry].map((row, rowIndex) => (
-          <div key={rowIndex} style={{ display: "flex", justifyContent: "center", gap: 8, marginBottom: 5 }}>
+          <div key={rowIndex} style={{ display: "flex", justifyContent: "flex-end", gap: 10, marginBottom: 5 }}>
             {row.map((value, i) => (
               rowIndex === 0 || rowIndex === 1 ? (
-                <span key={i} style={{ width: 28, height: 40, fontSize: 24, textAlign: "center", color: "black", display: "inline-block" }}>{value}</span>
+                <span key={i} style={{ width: 30, height: 40, fontSize: 24, textAlign: "center", color: "black" }}>{value}</span>
               ) : (
                 <input
                   key={i}
-                  style={{ width: 20, height: 30, fontSize: 18, textAlign: "center", border: "1px solid #ccc", borderRadius: 5, backgroundColor: "white", color: "black" }}
+                  style={{ width: 30, height: 40, fontSize: 24, textAlign: "center", border: "1px solid #ccc", borderRadius: 5, backgroundColor: "white", color: "black" }}
                   type="text"
                   maxLength="1"
                   value={value}
@@ -74,12 +74,12 @@ export default function App() {
             ))}
           </div>
         ))}
-        <hr style={{ width: "100%", margin: "5px 0", border: "3px solid black" }} />
-        <div style={{ display: "flex", justifyContent: "center", gap: 8, marginBottom: 5 }}>
+        <hr style={{ width: "100%", margin: "5px 0", border: "2px solid black" }} />
+        <div style={{ display: "flex", justifyContent: "flex-end", gap: 10, marginBottom: 5 }}>
           {result.map((value, i) => (
             <input
               key={i}
-              style={{ width: 28, height: 40, fontSize: 24, textAlign: "center", border: "1px solid #ccc", borderRadius: 5, backgroundColor: "white", color: "black" }}
+              style={{ width: 30, height: 40, fontSize: 24, textAlign: "center", border: "1px solid #ccc", borderRadius: 5, backgroundColor: "white", color: "black" }}
               type="text"
               maxLength="1"
               value={value}
