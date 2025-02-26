@@ -56,11 +56,11 @@ export default function App() {
           <div key={rowIndex} style={{ display: "flex", justifyContent: "flex-end", gap: 10, marginBottom: 5 }}>
             {row.map((value, i) => (
               rowIndex === 0 || rowIndex === 1 ? (
-                <span key={i} style={{ width: 30, height: 40, fontSize: 24, textAlign: "center" }}>{value}</span>
+                <span key={i} style={{ width: 30, height: 40, fontSize: 24, textAlign: "center", color: "black" }}>{value}</span>
               ) : (
                 <input
                   key={i}
-                  style={{ width: 30, height: 40, fontSize: 24, textAlign: "center", border: "1px solid #ccc", borderRadius: 5 }}
+                  style={{ width: 30, height: 40, fontSize: 24, textAlign: "center", border: "1px solid #ccc", borderRadius: 5, backgroundColor: "white", color: "black" }}
                   type="text"
                   maxLength="1"
                   value={value}
@@ -79,7 +79,7 @@ export default function App() {
           {result.map((value, i) => (
             <input
               key={i}
-              style={{ width: 30, height: 40, fontSize: 24, textAlign: "center", border: "1px solid #ccc", borderRadius: 5 }}
+              style={{ width: 30, height: 40, fontSize: 24, textAlign: "center", border: "1px solid #ccc", borderRadius: 5, backgroundColor: "white", color: "black" }}
               type="text"
               maxLength="1"
               value={value}
