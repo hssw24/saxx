@@ -37,7 +37,7 @@ export default function App() {
       }
     }
 
-    const carryCorrect = carry.every((c, i) => (c === "" || c === "0" || c === (correctCarry[i] || "").toString()));
+    const carryCorrect = carry.every((c, i) => c === (correctCarry[i] || "").toString());
     const resultCorrect = result.every((r, i) => r === correctDigits[i].toString());
 
     if (carryCorrect && resultCorrect) {
@@ -110,8 +110,21 @@ export default function App() {
         </div>
       </div>
       <button onClick={checkAnswer} style={{ backgroundColor: "#28a745", color: "white", border: "none", padding: 15, fontSize: 18, borderRadius: 5, cursor: "pointer", width: "90%", maxWidth: 400, margin: "10px 0" }}>Überprüfen</button>
-      <button onClick={newTask} style={{ backgroundColor: "#007bff", color: "white", border: "none", padding: 15, fontSize: 18, borderRadius: 5, cursor: "pointer", width: "90%", maxWidth: 400 }}>Neue Aufgabe</button>
+      {taskCompleted && (
+        <button onClick={newTask} style={{ backgroundColor: "#007bff", color: "white", border: "none", padding: 15, fontSize: 18, borderRadius: 5, cursor: "pointer", width: "90%", maxWidth: 400 }}>Neue Aufgabe</button>
+      )}
       <p style={{ fontSize: 18, marginTop: 10 }}>{message}</p>
+      {overlay && (
+        <div style={{ position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)", background: "white", padding: 20, boxShadow: "0 4px 8px rgba(0,0,0,0.2)", borderRadius: 10, width: "80vw", maxWidth: 300 }}>
+          <h4>Zahl auswählen</h4>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 5 }}>
+            {[...Array(10).keys()].map(num => (
+              <button key={num} style={{ fontSize: 20, padding: 15 }} onClick={() => selectNumber(num)}>{num}</button>
+            ))}
+          </div>
+          <button onClick={() => setOverlay(null)} style={{ marginTop: 10, width: "100%" }}>Schließen</button>
+        </div>
+      )}
     </div>
   );
 }
