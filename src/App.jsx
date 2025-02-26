@@ -39,7 +39,7 @@ export default function App() {
     const carryCorrect = carry.every((c, i) => c === (correctCarry[i] || "").toString());
     const resultCorrect = result.every((r, i) => r === correctDigits[i].toString());
 
-    setMessage(carryCorrect && resultCorrect ? "✅ Richtig!" : "❌ Leider falsch. Versuche es nochmal!");
+    setMessage(carryCorrect && resultCorrect ? "✅ Richtig!" : "❌ Versuche es nochmal!");
   }
 
   function newTask() {
