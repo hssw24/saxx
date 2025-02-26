@@ -102,9 +102,9 @@ export default function App() {
       <button onClick={newTask} style={{ backgroundColor: "#007bff", color: "white", border: "none", padding: 10, fontSize: 16, borderRadius: 5, cursor: "pointer", width: "100%" }}>Neue Aufgabe</button>
       <p style={{ fontSize: 18, marginTop: 10 }}>{message}</p>
       {overlay && (
-        <div style={{ position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)", background: "white", padding: 20, boxShadow: "0 4px 8px rgba(0,0,0,0.2)", borderRadius: 10 }}>
+        <div style={{ position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)", background: "white", padding: 20, boxShadow: "0 4px 8px rgba(0,0,0,0.2)", borderRadius: 10, width: 200 }}>
           <h4>Zahl auswählen</h4>
-          <div style={{ display: "flex", gap: 10 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 5 }}>
             {[...Array(10).keys()].map(num => (
               <button key={num} style={{ fontSize: 20, padding: 10 }} onClick={() => selectNumber(num)}>{num}</button>
             ))}
