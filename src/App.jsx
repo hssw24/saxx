@@ -50,18 +50,18 @@ export default function App() {
 
   return (
     <div style={{ fontFamily: "Arial", textAlign: "center", maxWidth: 400, margin: "20px auto", padding: 20, background: "#fff", borderRadius: 10, boxShadow: "0 4px 8px rgba(0,0,0,0.1)", color: "black" }}>
-      <h1 style={{ color: "black" }}>Schriftliche Addition</h1>
+      <h3 style={{ color: "black" }}>Schriftliche Addition</h3>
       <div>
         {/* Hier werden die Ziffern der Summanden angezeigt */}
         {[num1Digits, num2Digits, carry].map((row, rowIndex) => (
           <div key={rowIndex} style={{ display: "flex", justifyContent: "flex-end", gap: 10, marginBottom: 5 }}>
             {row.map((value, i) => (
               rowIndex === 0 || rowIndex === 1 ? (
-                <span key={i} style={{ width: 30, height: 40, fontSize: 24, textAlign: "center", color: "black" }}>{value}</span>
+                <span key={i} style={{ width: 36, height: 40, fontSize: 24, textAlign: "center", color: "black" }}>{value}</span>
               ) : (
                 <input
                   key={i}
-                  style={{ width: 30, height: 40, fontSize: 24, textAlign: "center", border: "1px solid #ccc", borderRadius: 5, backgroundColor: "white", color: "black" }}
+                  style={{ width: 30, height: 20, fontSize: 16, textAlign: "center", border: "1px solid #ccc", borderRadius: 5, backgroundColor: "#fffacd", color: "black" }}
                   type="text"
                   maxLength="1"
                   value={value}
@@ -80,7 +80,7 @@ export default function App() {
           {result.map((value, i) => (
             <input
               key={i}
-              style={{ width: 30, height: 40, fontSize: 24, textAlign: "center", border: "1px solid #ccc", borderRadius: 5, backgroundColor: "white", color: "black" }}
+              style={{ width: 30, height: 40, fontSize: 24, textAlign: "center", border: "1px solid #ccc", borderRadius: 5, backgroundColor: "#d4f8c4", color: "black" }}
               type="text"
               maxLength="1"
               value={value}
