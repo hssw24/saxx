@@ -51,59 +51,48 @@ export default function App() {
   return (
     <div style={{ fontFamily: "Arial", textAlign: "center", maxWidth: 400, margin: "20px auto", padding: 20, background: "#fff", borderRadius: 10, boxShadow: "0 4px 8px rgba(0,0,0,0.1)", color: "black" }}>
       <h1 style={{ color: "black" }}>Schriftliche Addition</h1>
-      <table style={{ margin: "0 auto", borderCollapse: "collapse", fontSize: 24 }}>
-        <tbody>
-          <tr>
-            {carry.map((c, i) => (
-              <td key={i} style={{ width: 30, textAlign: "center" }}>
+      <div>
+        {/* Hier werden die Ziffern der Summanden angezeigt */}
+        {[num1Digits, num2Digits, carry].map((row, rowIndex) => (
+          <div key={rowIndex} style={{ display: "flex", justifyContent: "flex-end", gap: 10, marginBottom: 5 }}>
+            {row.map((value, i) => (
+              rowIndex === 0 || rowIndex === 1 ? (
+                <span key={i} style={{ width: 30, height: 40, fontSize: 24, textAlign: "center", color: "black" }}>{value}</span>
+              ) : (
                 <input
-                  style={{ width: 20, fontSize: 16, textAlign: "center" }}
-                  type="text"
-                  maxLength="1"
-                  value={c}
-                  onChange={(e) => {
-                    let newCarry = [...carry];
-                    newCarry[i] = e.target.value.replace(/\D/, "");
-                    setCarry(newCarry);
-                  }}
-                />
-              </td>
-            ))}
-          </tr>
-          <tr>
-            {num1Digits.map((digit, i) => (
-              <td key={i} style={{ textAlign: "center" }}>{digit}</td>
-            ))}
-          </tr>
-          <tr>
-            {num2Digits.map((digit, i) => (
-              <td key={i} style={{ textAlign: "center" }}>{digit}</td>
-            ))}
-          </tr>
-        </tbody>
-      </table>
-      <hr style={{ width: "100%", margin: "5px 0", border: "2px solid black" }} />
-      <table style={{ margin: "0 auto", borderCollapse: "collapse", fontSize: 24 }}>
-        <tbody>
-          <tr>
-            {result.map((value, i) => (
-              <td key={i} style={{ width: 30, textAlign: "center" }}>
-                <input
-                  style={{ width: 30, fontSize: 24, textAlign: "center" }}
+                  key={i}
+                  style={{ width: 30, height: 40, fontSize: 24, textAlign: "center", border: "1px solid #ccc", borderRadius: 5, backgroundColor: "white", color: "black" }}
                   type="text"
                   maxLength="1"
                   value={value}
                   onChange={(e) => {
-                    let newResult = [...result];
-                    newResult[i] = e.target.value.replace(/\D/, "");
-                    setResult(newResult);
+                    let newValue = [...carry];
+                    newValue[i] = e.target.value.replace(/\D/, "");
+                    setCarry(newValue);
                   }}
                 />
-              </td>
+              )
             ))}
-          </tr>
-        </tbody>
-      </table>
+          </div>
+        ))}
+        <hr style={{ width: "100%", margin: "5px 0", border: "2px solid black" }} />
+        <div style={{ display: "flex", justifyContent: "flex-end", gap: 10, marginBottom: 5 }}>
+          {result.map((value, i) => (
+            <input
+              key={i}
+              style={{ width: 30, height: 40, fontSize: 24, textAlign: "center", border: "1px solid #ccc", borderRadius: 5, backgroundColor: "white", color: "black" }}
+              type="text"
+              maxLength="1"
+              value={value}
+              onChange={(e) => {
+                let newValue = [...result];
+                newValue[i] = e.target.value.replace(/\D/, "");
+                setResult(newValue);
+              }}
+            />
+          ))}
+        </div>
+      </div>
       <button onClick={checkAnswer} style={{ backgroundColor: "#28a745", color: "white", border: "none", padding: 10, fontSize: 16, borderRadius: 5, cursor: "pointer", width: "100%", margin: "10px 0" }}>Überprüfen</button>
       <button onClick={newTask} style={{ backgroundColor: "#007bff", color: "white", border: "none", padding: 10, fontSize: 16, borderRadius: 5, cursor: "pointer", width: "100%" }}>Neue Aufgabe</button>
       <p style={{ fontSize: 18, marginTop: 10 }}>{message}</p>
